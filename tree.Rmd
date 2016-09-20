@@ -1,0 +1,102 @@
+---
+title: "tree"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+Frist, prepare the data.
+
+```{r}
+setwd("C:/Users/Jackie/Documents/Data Science/Project 1")
+data = read.csv("data.ab.csv")
+data.non = data[which(data$Class.of.Worker==1),]
+data.self = data[which(data$Class.of.Worker==2),]
+v = data.non$PWGTP
+s = sum(data.non$PWGTP)
+p = v/s
+v1 = data.self$PWGTP
+s1 = sum(data.self$PWGTP)
+p1 = v1/s1
+cbind(data.non,p)
+cbind(data.self,p1)
+d.n.n = data.non[sample(nrow(data.non), size = s1, replace = TRUE, prob = data.non$p),]
+d.s.n1 = data.self[rep(row.names(data.self),data.self$PWGTP), 1:8]
+d.s = d.s.n1[,-1]
+d.n = d.n.n[,-9]
+d.n = d.n[,-1]
+data.f = rbind(d.s,d.n)
+data.f$Class.of.Worker[data.f$Class.of.Worker == 2 ] <-  "Self employment"
+data.f$Class.of.Worker[data.f$Class.of.Worker == 1 ] <-  "Non Self"
+data.f$SEX[data.f$SEX == 1 ] <-  "Male"
+data.f$SEX[data.f$SEX == 2 ] <-  "Female"
+data.f$NATIVITY[data.f$NATIVITY == 2 ] <-  "Foreign born"
+data.f$NATIVITY[data.f$NATIVITY == 1 ] <-  "Native"
+data.f$CIT[data.f$CIT==1] <- "Born U.S."
+data.f$CIT[data.f$CIT==2] <- "Born U.S."
+data.f$CIT[data.f$CIT==3] <- "Born abroad of American parent(s)"
+data.f$CIT[data.f$CIT==4] <- "U.S. citizen by naturalization"
+data.f$CIT[data.f$CIT==5] <- "Not a citizen of the U.S."
+data.f$DIS[data.f$DIS == 1 ] <-  "With a disability"
+data.f$DIS[data.f$DIS == 2 ] <-  "Without a disability"
+
+data.f$RAC1P[data.f$RAC1P==1] <- "White alone"
+data.f$RAC1P[data.f$RAC1P==2] <- "Black or African American alone"
+data.f$RAC1P[data.f$RAC1P==3] <- "American natives"
+data.f$RAC1P[data.f$RAC1P==4] <- "American natives"
+data.f$RAC1P[data.f$RAC1P==5] <- "American natives"
+data.f$RAC1P[data.f$RAC1P==6] <- "Asian alone"
+data.f$RAC1P[data.f$RAC1P==7] <- "Native Hawaiian and Other Pacific Islander alone"
+data.f$RAC1P[data.f$RAC1P==8] <- "Some Other Race alone"
+data.f$RAC1P[data.f$RAC1P==9] <- "Two or More Races"
+
+data.q = data.f
+data.q$Class.of.Worker = as.factor(data.q$Class.of.Worker)
+data.q$Education.Attainment = as.factor(data.q$Education.Attainment)
+data.q$SEX = as.factor(data.q$SEX)
+data.q$RAC1P = as.factor(data.q$RAC1P)
+data.q$DIS= as.factor(data.q$DIS)
+data.q$NATIVITY = as.factor(data.q$NATIVITY)
+data.q$CIT = as.factor(data.q$CIT)
+head(data.q,5)
+```
+
+Second, getting the packages for modeling and release the memory.
+```{r}
+library(rpart)
+library(RColorBrewer)
+library(rattle)
+library(rpart.plot)
+
+memory.limit()
+memory.limit(size =18000)
+```
+
+Third, develped the model and tune the parameters. Picked the best complexity parameter by the minimum cross-validaiton error.
+```{r}
+fit = rpart(Class.of.Worker~Education.Attainment+SEX+NATIVITY+CIT, data = data.q, 
+            control=rpart.control(cp=0.00041))
+names(summary(fit))
+plotcp(fit)
+
+```
+Plot the tree.
+```{r}
+prp(fit)
+```
+
+```{r}
+fancyRpartPlot(fit, palettes=c("PuBuGn", "Reds"))
+
+```
+
