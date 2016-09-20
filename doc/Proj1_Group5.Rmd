@@ -10,6 +10,8 @@ And this is where I will add more descriptive information.
 ```{r}
 ## you will input your code here, so that we can hide it during the presentation
 ## but it will still generate the necessary output and visualizations
+## testing
+
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
