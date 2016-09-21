@@ -160,11 +160,7 @@ regression results
 ```{r,results='asis',echo = FALSE}
 knitr::kable(summary(m1)$coefficients)
 ```
-\[
-SEMP=24229.956+3482.857SCHL.i0-10693.914SCHL.i1-10153.449SCHL.i2+7918.872DIS.i1-8628.913SEX.i1+2941.483NATIVITY.i1+5560.645RAC1P.I1
-\]
->>>>>>> fce47176f45811cb1c18b1a78701a09db12a56d0:doc/finalproj.Rmd
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).
+
 
 ```{r,echo=FALSE}
 setwd("C:/Users/Jackie/Desktop/Fall2016-proj1-grp5/data")
