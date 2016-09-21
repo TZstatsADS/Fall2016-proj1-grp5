@@ -31,7 +31,7 @@ library(fBasics)
 ```
 ```{r,include = FALSE ,echo=FALSE}
 #change the sequence of the variables to make it more convenient for the for loop
-load("/Users/yifeihu/Documents/semester_3/applied_data_science/csv_pus(1)/data_a1.Rdata")
+load("./data_a1.Rdata")
 data_a2 <-data_a1[,c("PWGTP","SEMP","COW","SCHL","FOD1P","RAC1P","DIS","SEX","CIT","NATIVITY","FSEMP","FCOWP","FSCHLP","FFODP","FRACP","FDISP","FSEXP","FCITP")]
 
 #fill in the missing by using the cold deck method of the data without allocation flag
