@@ -20,6 +20,7 @@ ggplotly(chart)
 
 ```
 
+The majority of the respondents for the survey are in the for-profit sector. It is interesting to note that the careers that have more females than males would be the non-profit sector, local government, state government, family or farm, or unemployed sectors. Self-employment and for-profit are predominately male. 
 
 =======
 ```{r,include = FALSE ,echo=FALSE}
