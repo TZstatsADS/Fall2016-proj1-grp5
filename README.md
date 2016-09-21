@@ -4,7 +4,7 @@
 Term: Fall 2016
 
 + Team #5
-+ Projec title: What motivate self-employment?
++ Projec title: What motivates self-employment?
 + Team members
 	+ Jennifer Kanjana
 	+ Shujin Cao
