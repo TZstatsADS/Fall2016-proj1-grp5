@@ -11,6 +11,16 @@ output:
 
 As the presidential election is nearing, the first presidential debate is quickly approaching, with the selected topics as "America's Direction", "Achieviving Prosperity", and "Securing America". The rhetoric around achieving prosperity has included bolstering small business, which also includes encouraging and supporting self-employment. We wanted to look at various factors that might influence self employment, so we chose to look at covariates that included educational level (SCHL), field of degree (FOD1P), race (RACE), disability (DIS), sex (SEX), whether they are native or foreign born (NATIVITY), and citizenship status (CIT). 
 
+```{r, include = FALSE, echo=FALSE}
+
+load(file="/Users/kanjanaj/Documents/q3_ads/ndata3.Rdata")
+ 
+chart <- ggplot(data=ndata2, aes(x=career, fill=gender)) + geom_bar(position="dodge") + xlab("career type") + ylab("count") + ggtitle ("Careers by Gender")
+ggplotly(chart)
+
+```
+
+
 =======
 ```{r,include = FALSE ,echo=FALSE}
 #here put an r code which loads the requested packages
