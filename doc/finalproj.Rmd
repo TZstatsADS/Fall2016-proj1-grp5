@@ -9,7 +9,7 @@ output:
 
 ## What motivates self-employment?
 
-
+As the presidential election is nearing, the first presidential debate is quickly approaching, with the selected topics as "America's Direction", "Achieviving Prosperity", and "Securing America". The rhetoric around achieving prosperity has included bolstering small business, which also includes encouraging and supporting self-employment. We wanted to look at various factors that might influence self employment, so we chose to look at 
 
 =======
 ```{r,include = FALSE ,echo=FALSE}
