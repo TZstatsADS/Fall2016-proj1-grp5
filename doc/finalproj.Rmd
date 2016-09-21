@@ -1,29 +1,28 @@
 ---
 title: "Project 1 Group 5"
 output:
+  pdf_document: default
   html_notebook: default
   html_document: default
+  word_document: default
 ---
 
 ## What motivates self-employment?
 
-And this is where I will add more descriptive information. 
 
-```{r}
-## you will input your code here, so that we can hide it during the presentation
-## but it will still generate the necessary output and visualizations
-## testing
 
-```
-
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
-
-<<<<<<< HEAD:doc/Proj1_Group5.Rmd
 =======
-regression analysis
 ```{r,include = FALSE ,echo=FALSE}
 #here put an r code which loads the requested packages
+if (!require("xts")) {
+  install.packages("xts", repos="http://cran.rstudio.com/") 
+  library("xts")
+}
 library("xts") #for time series
+if (!require("nloptr")) {
+  install.packages("nloptr", repos="http://cran.rstudio.com/") 
+  library("nloptr")
+}
 library("nloptr") #for optimization
 library(zoo)
 library("dygraphs") #for plots
@@ -32,27 +31,6 @@ library("magrittr") # pipes
 library("webshot")
 library(fBasics)
 ```
-The purpose of the regression analysis:
-To study the influence of the type of educational attainment, field of degree, race, disability, sex and nativity on the self-employment income in past 12 months. Especially, the classification of field of degree is to study the difference of the fields of degree that applied data science course student may have between other fields of degree.
-
-The classification of the predictor variables:
-SCHL.i0=1 means the educational attainment is not Bachelor or Master or Doctorate
-SCHL.i0=0 means the educational attainment is Bachelor or Master or Doctorate
-SCHL.i1=1 means the educational attainment is Bachelor
-SCHL.i1=0 means the educational attainment is not Bachelor
-SCHL.i2=1 means educational attainment is Master
-SCHL.i2=0 means educational attainment is not Master
-FOD1P.I=1 means the field of degree is in computer science, math and finance
-FOD1P.I=0 means the field of degree is not in computer science, math and finance
-RAC1P.I=1 means the race is white alone(majority)
-RAC1P.I=0 means the race is other (minority)
-DIS.i=0 means with a disability
-DIS.i=1 means without a disability
-SEX.i=0 means male
-SEX.i=1 means female
-NATIVITY.i=0 means native
-NATIVITY.i=1 means foreign born
-
 ```{r,include = FALSE ,echo=FALSE}
 #change the sequence of the variables to make it more convenient for the for loop
 load("./data_a1.Rdata")
@@ -174,10 +152,6 @@ knitr::kable(summary(m1)$coefficients)
 \[
 SEMP=24229.956+3482.857SCHL.i0-10693.914SCHL.i1-10153.449SCHL.i2+7918.872DIS.i1-8628.913SEX.i1+2941.483NATIVITY.i1+5560.645RAC1P.I1
 \]
-
-Results analysis:
-The model implies that the response function of self-employment income in past 12 months is linear with the same slope for all “type of educational attainment, race, disability, sex and nativity” combinations. The coefficients of the variables indicate the additive differential effects of type of educational attainment, race, disability, sex and nativity on the height of the regression line for any given levels of the other predictor variables. 
-
 >>>>>>> fce47176f45811cb1c18b1a78701a09db12a56d0:doc/finalproj.Rmd
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).
 
