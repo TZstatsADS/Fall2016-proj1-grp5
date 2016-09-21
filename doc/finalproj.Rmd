@@ -31,6 +31,7 @@ library(fBasics)
 ```
 ```{r,include = FALSE ,echo=FALSE}
 #change the sequence of the variables to make it more convenient for the for loop
+load("/Users/yifeihu/Documents/semester_3/applied_data_science/csv_pus(1)/data_a1.Rdata")
 data_a2 <-data_a1[,c("PWGTP","SEMP","COW","SCHL","FOD1P","RAC1P","DIS","SEX","CIT","NATIVITY","FSEMP","FCOWP","FSCHLP","FFODP","FRACP","FDISP","FSEXP","FCITP")]
 
 #fill in the missing by using the cold deck method of the data without allocation flag
@@ -43,14 +44,14 @@ for(j in 2:9)
   data_a2[,c(j)][NA_c]<-sample(rep(data_a2[,c(j)][sample_c],data_a2$PWGTP[sample_c]),length(data_a2[,c(j)][NA_c]),replace=TRUE)
 }
 
-save(data_a2,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_a2.Rdata")
+#save(data_a2,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_a2.Rdata")
 
 #choose the observations that are self-employment
 data_a3<-data_a2[which(data_a2$COW==6 | data_a2$COW==7),]
 
 #choose the variables to use
 data_a3<-data_a3[,c("PWGTP","SEMP","COW","SCHL","FOD1P","RAC1P","DIS","SEX","CIT","NATIVITY")]
-save(data_a3,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_a3.Rdata")
+#save(data_a3,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_a3.Rdata")
 
 #recode the classification of field of degree
 #code the field of degree of mathmatics, computer science, and Finace as 1
@@ -63,7 +64,7 @@ for (i in c(2100:2107, 3700:3702,4005))
 }
 data_a3$FOD1P[-which(data_a3$FOD1P == 1)] <- 0
 #table(data3$FOD1P)
-save(data_a3,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_a3.Rdata")
+#save(data_a3,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_a3.Rdata")
 
 #recode the classification of RACE 
 #to code white alone as majority 1 and others as minority 0
@@ -78,7 +79,7 @@ data_a3$RAC1P[-which(data_a3$RAC1P==1)]<-0
 
 #save the data after recode 
 data_a4<-data_a3[,c("PWGTP","SEMP","COW","SCHL","FOD1P","RAC1P","DIS","SEX","NATIVITY")]
-save(data_a4,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_a4.Rdata")
+#save(data_a4,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_a4.Rdata")
 
 #prepare for linear regression 
 data_a5<-data_a4[,c("PWGTP","SEMP","SCHL","FOD1P","RAC1P","DIS","SEX","NATIVITY")]
@@ -104,7 +105,7 @@ data_r$SEX.i<-data_r$SEX-1
 data_r$NATIVITY.i<-data_r$NATIVITY-1
 data_r$FOD1P.I<-data_r$FOD1P
 data_r$RAC1P.I<-data_r$RAC1P
-save(data_r,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_r.Rdata")
+#save(data_r,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_r.Rdata")
 
 #factor the variables
 for(j in 9:17)
@@ -112,7 +113,7 @@ for(j in 9:17)
   data_r[,c(j)]<-factor(data_r[,c(j)])
 }
   data_afterf<-data_r
-save(data_afterf,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_afterf.Rdata")
+#save(data_afterf,file="/Users/yifeihu/Documents/Fall2016-proj1-grp5/data/data_afterf.Rdata")
 
 #do linear regression
 m<-lm(SEMP~0+SCHL.i0+SCHL.i1+SCHL.i2+DIS.i+SEX.i+NATIVITY.i+FOD1P.I+RAC1P.I,weight=PWGTP,data=data_afterf)
