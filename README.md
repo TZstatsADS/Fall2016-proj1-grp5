@@ -27,3 +27,12 @@ proj/
 
 Please see each subfolder for a README file.
 
++ Directory layout
+    + The 'lib' directory contains tutorials for reference as well as some pre-processing R code
+    + The 'data' directory includes transformed data in order to deal with the NA values.
+    + The 'doc' directory includes the completed R notebook and R notebook html file
+    + The 'figs' directory includes charts and graphs 
+    + The 'output' directory includes analysis output, and other processed things. 
+
+Please see each subfolder for a README file.
+
