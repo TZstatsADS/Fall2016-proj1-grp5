@@ -134,7 +134,7 @@ correlation matrix
 cor(data_forcov[,c("SCHL.i0","SCHL.i1","SCHL.i2","DIS.i","SEX.i","NATIVITY.i","RAC1P.I")])
 ```
 
-```{r,results='asis'}
+```{r,results='asis', echo = FALSE}
 knitr::kable(cor(data_forcov[,c("SCHL.i0","SCHL.i1","SCHL.i2","DIS.i","SEX.i","NATIVITY.i","RAC1P.I")]))
 ```
 ```{r,include = FALSE , echo = FALSE }
@@ -144,7 +144,7 @@ summary(m1)
 ```
 
 regression results
-```{r,results='asis'}
+```{r,results='asis',echo = FALSE}
 knitr::kable(summary(m1)$coefficients)
 ```
 \[
